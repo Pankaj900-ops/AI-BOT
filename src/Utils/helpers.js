@@ -1,45 +1,33 @@
-// src/Utils/helpers.js
-import aiResponses from '../components/aiResponses.js';
+import aiResponses from "../aiResponses";
 
+const STORAGE_KEY = "conversations";
+
+// --------------------
+// AI RESPONSE HANDLER
+// --------------------
 export const getAIResponse = (question) => {
-  const lowerQuestion = question.toLowerCase().trim();
-
-  for (const key in aiResponses) {
-    if (lowerQuestion.includes(key)) {
-      return aiResponses[key];
-    }
-  }
-
-  return "Sorry, did not understand your query!";
+  const key = question.toLowerCase().trim();
+  return (
+    aiResponses[key] ||
+    "Sorry, Did not understand your query!"
+  );
 };
 
-export const formatDate = (timestamp) => {
-  return new Date(timestamp).toLocaleString();
-};
-
-export const getAllFeedback = () => {
-  const data = localStorage.getItem("feedback");
-  return data ? JSON.parse(data) : [];
-};
-
+// --------------------
+// LOCAL STORAGE HELPERS
+// --------------------
 export const getConversations = () => {
-  const data = localStorage.getItem("conversations");
-  return data ? JSON.parse(data) : [];
-};
-
-export const deleteConversation = (id) => {
-  const conversations = getConversations();
-  const updated = conversations.filter(c => c.id !== id);
-  localStorage.setItem("conversations", JSON.stringify(updated));
-  return updated;
+  return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
 };
 
 export const saveConversation = (conversation) => {
   const conversations = getConversations();
-  localStorage.setItem("conversations", JSON.stringify([...conversations, conversation]));
+  conversations.push(conversation);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(conversations));
 };
 
-export const saveFeedback = (feedbackData) => {
-  const feedback = getAllFeedback();
-  localStorage.setItem("feedback", JSON.stringify([...feedback, feedbackData]));
+export const deleteConversation = (id) => {
+  const updated = getConversations().filter((c) => c.id !== id);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+  return updated;
 };

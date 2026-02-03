@@ -4,161 +4,114 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2000;
-  padding: 1rem;
-  animation: fadeIn 0.2s ease-out;
+  z-index: 1000;
 }
 
 .modal-content {
-  background: var(--secondary-bg);
-  border: 1px solid var(--border-color);
+  background: white;
+  padding: 30px;
   border-radius: 16px;
-  width: 100%;
   max-width: 500px;
-  box-shadow: var(--shadow-lg);
-  animation: slideIn 0.3s ease-out;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1.5rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.modal-header h2 {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  margin: 0;
-}
-
-.modal-close-btn {
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
   background: transparent;
   border: none;
-  color: var(--text-secondary);
+  font-size: 28px;
   cursor: pointer;
-  padding: 0.5rem;
-  border-radius: 6px;
-  transition: all var(--transition-fast);
+  color: #999;
+  line-height: 1;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+.modal-content h2 {
+  margin: 0 0 25px 0;
+  font-size: 22px;
+  color: #333;
+}
+
+.rating-container {
+  margin-bottom: 25px;
+}
+
+.stars {
   display: flex;
-  align-items: center;
+  gap: 10px;
   justify-content: center;
-}
-
-.modal-close-btn:hover {
-  background: var(--tertiary-bg);
-  color: var(--text-primary);
-}
-
-.modal-content form {
-  padding: 1.5rem;
-}
-
-.feedback-section {
-  margin-bottom: 1.5rem;
-}
-
-.feedback-label {
-  display: block;
-  font-weight: 600;
-  color: var(--text-primary);
-  margin-bottom: 0.75rem;
-  font-size: 0.95rem;
-}
-
-.star-rating {
-  display: flex;
-  gap: 0.5rem;
-  margin-bottom: 0.5rem;
+  margin-top: 15px;
 }
 
 .star {
-  background: transparent;
-  border: none;
+  font-size: 40px;
+  color: #ddd;
   cursor: pointer;
-  padding: 0;
-  transition: all var(--transition-fast);
-  color: var(--border-color);
+  transition: all 0.2s ease;
 }
 
-.star:hover {
-  transform: scale(1.1);
-}
-
+.star:hover,
 .star.filled {
-  color: #fbbf24;
+  color: #FFD700;
 }
 
-.rating-label {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  margin-top: 0.5rem;
-  text-align: center;
+.comment-container {
+  margin-bottom: 25px;
+}
+
+.comment-container label {
+  display: block;
+  margin-bottom: 10px;
   font-weight: 500;
+  color: #555;
 }
 
-.feedback-textarea {
+.comment-container textarea {
   width: 100%;
-  padding: 0.875rem;
-  background: var(--tertiary-bg);
-  border: 1px solid var(--border-color);
+  padding: 12px;
+  border: 1px solid #ddd;
   border-radius: 8px;
-  color: var(--text-primary);
-  font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 14px;
+  font-family: inherit;
   resize: vertical;
-  transition: all var(--transition-fast);
-}
-
-.feedback-textarea:focus {
   outline: none;
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
-.feedback-textarea::placeholder {
-  color: var(--text-muted);
+.comment-container textarea:focus {
+  border-color: #9785BA;
 }
 
-.modal-actions {
+.modal-buttons {
   display: flex;
-  gap: 1rem;
   justify-content: flex-end;
-  margin-top: 2rem;
 }
 
-.modal-actions .btn-secondary,
-.modal-actions .btn-primary {
-  padding: 0.75rem 1.5rem;
+.submit-btn {
+  padding: 12px 30px;
+  background: #9785BA;
+  color: white;
+  border: none;
   border-radius: 8px;
-  font-weight: 600;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all var(--transition-fast);
+  transition: all 0.3s ease;
 }
 
-@media (max-width: 768px) {
-  .modal-content {
-    max-width: calc(100vw - 2rem);
-  }
-
-  .modal-header {
-    padding: 1rem;
-  }
-
-  .modal-content form {
-    padding: 1rem;
-  }
-
-  .star svg {
-    width: 28px;
-    height: 28px;
-  }
+.submit-btn:hover {
+  background: #8674a8;
 }
