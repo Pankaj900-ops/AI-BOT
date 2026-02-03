@@ -1,3 +1,5 @@
+  
+     
 :root {
   /* Color Palette - Modern Tech Aesthetic */
   --primary-bg: #0a0e27;
@@ -13,29 +15,29 @@
   --success: #10b981;
   --warning: #f59e0b;
   --error: #ef4444;
-  
+ 
   /* Shadows & Effects */
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4);
   --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
   --glow: 0 0 20px rgba(99, 102, 241, 0.3);
-  
+ 
   /* Transitions */
   --transition-fast: 0.15s ease;
   --transition-base: 0.3s ease;
   --transition-slow: 0.5s ease;
-  
+ 
   /* Typography */
   --font-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
-
+ 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
+ 
 body {
   font-family: var(--font-body);
   background: var(--primary-bg);
@@ -44,7 +46,32 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+ 
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+}
+ 
+.App header {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--secondary-bg);
+}
+ 
+.App header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+ 
+.App .main-content {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+ 
 .app {
   display: flex;
   height: 100vh;
@@ -52,7 +79,7 @@ body {
   position: relative;
   overflow: hidden;
 }
-
+ 
 .main-content {
   flex: 1;
   display: flex;
@@ -62,37 +89,37 @@ body {
   overflow: hidden;
   background: var(--primary-bg);
 }
-
+ 
 .main-content.sidebar-open {
   margin-left: 280px;
 }
-
+ 
 /* Scrollbar Styling */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-
+ 
 ::-webkit-scrollbar-track {
   background: var(--secondary-bg);
 }
-
+ 
 ::-webkit-scrollbar-thumb {
   background: var(--border-color);
   border-radius: 4px;
 }
-
+ 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--accent-primary);
 }
-
+ 
 /* Responsive Design */
 @media (max-width: 768px) {
   .main-content.sidebar-open {
     margin-left: 0;
   }
 }
-
+ 
 /* Loading Animation */
 @keyframes pulse {
   0%, 100% {
@@ -102,7 +129,7 @@ body {
     opacity: 0.5;
   }
 }
-
+ 
 @keyframes slideIn {
   from {
     transform: translateY(20px);
@@ -113,11 +140,11 @@ body {
     opacity: 1;
   }
 }
-
+ 
 .slide-in {
   animation: slideIn var(--transition-base) ease-out;
 }
-
+ 
 /* Utility Classes */
 .text-gradient {
   background: var(--accent-gradient);
@@ -125,7 +152,7 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-
+ 
 .btn-primary {
   background: var(--accent-gradient);
   color: var(--text-primary);
@@ -137,16 +164,16 @@ body {
   transition: all var(--transition-fast);
   box-shadow: var(--shadow-sm);
 }
-
+ 
 .btn-primary:hover {
   transform: translateY(-2px);
   box-shadow: var(--shadow-md), var(--glow);
 }
-
+ 
 .btn-primary:active {
   transform: translateY(0);
 }
-
+ 
 .btn-secondary {
   background: var(--tertiary-bg);
   color: var(--text-primary);
@@ -157,7 +184,7 @@ body {
   cursor: pointer;
   transition: all var(--transition-fast);
 }
-
+ 
 .btn-secondary:hover {
   background: var(--secondary-bg);
   border-color: var(--accent-primary);

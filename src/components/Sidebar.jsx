@@ -1,11 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Sidebar.css";
 
-const Sidebar = () => {
+const Sidebar = ({ onNewChat }) => {
   return (
     <div className="sidebar">
-      <a href="/">New Chat</a>
-      <a href="/history">Past Conversations</a>
+      <Link to="/" onClick={onNewChat}>
+        New Chat
+      </Link>
+      <Link to="/history">Past Conversations</Link>
     </div>
   );
 };

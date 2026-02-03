@@ -1,52 +1,45 @@
 import { useEffect, useState } from "react";
-import { getAIResponse } from "../aiResponses";
-import "./ChatView.css";
+import "./HistoryView.css";
 
-const ChatView = () => {
-  const [message, setMessage] = useState("");
-  const [messages, setMessages] = useState([]);
+const SAVED_CONVERSATIONS_KEY = "savedConversations";
 
-  // Load saved conversations
+const HistoryView = () => {
+  const [conversations, setConversations] = useState([]);
+
   useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("conversations")) || [];
-    setMessages(saved);
+    const saved =
+      JSON.parse(localStorage.getItem(SAVED_CONVERSATIONS_KEY)) || [];
+    setConversations(saved);
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!message.trim()) return;
-
-    const userMsg = { sender: "user", text: message };
-    const aiMsg = { sender: "ai", text: getAIResponse(message) };
-
-    const updatedMessages = [...messages, userMsg, aiMsg];
-
-    setMessages(updatedMessages);
-    localStorage.setItem("conversations", JSON.stringify(updatedMessages));
-    setMessage("");
-  };
-
   return (
-    <div className="chat-view">
-      {/* REQUIRED BY CYPRESS */}
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Message Bot AI..."
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        />
-        <button type="submit">Send</button>
-      </form>
-
-      {messages.map((msg, index) => (
-        <div key={index} className="bot-message">
-          {msg.sender === "ai" && <span>Soul AI</span>}
-          <p>{msg.text}</p>
+    <div className="history-view">
+      <div className="history-content">
+        <div>Past Conversations</div>
+        <div className="conversations-list">
+          {conversations.length === 0 && (
+            <p className="no-history">No past conversations.</p>
+          )}
+          {conversations.map((conv, idx) => {
+            const firstUserMessage = conv.messages?.find(
+              (m) => m.sender === "user"
+            );
+            const title = firstUserMessage?.text || "Conversation";
+            return (
+              <div key={idx} className="conversation-card">
+                <div>{title}</div>
+                {conv.messages?.map((msg, i) => (
+                  <div key={i} className="history-message">
+                    <p>{msg.text}</p>
+                  </div>
+                ))}
+              </div>
+            );
+          })}
         </div>
-      ))}
+      </div>
     </div>
   );
 };
 
-export default ChatView;
+export default HistoryView;
